@@ -22,7 +22,7 @@ RUN npm install -g pnpm
 
 # Install OpenClaw (formerly clawdbot/moltbot)
 # Pin to specific version for reproducible builds
-RUN npm install -g openclaw@2026.2.3 \
+RUN npm install -g openclaw@2026.3.7 \
     && openclaw --version
 
 # Create OpenClaw directories
@@ -31,8 +31,14 @@ RUN mkdir -p /root/.openclaw \
     && mkdir -p /root/clawd \
     && mkdir -p /root/clawd/skills
 
+# Pre-install the Aight plugin so it's available immediately on first boot.
+# This avoids a 3+ minute install during E2E onboarding (the app checks
+# aight.status RPC and skips the install flow if the plugin is already present).
+# Use openclaw CLI to install — it handles the correct directory structure.
+RUN openclaw plugins install @aight-cool/aight-utils
+
 # Copy startup script
-# Build cache bust: 2026-02-11-v30-rclone
+# Build cache bust: 2026-03-08-v37-openclaw-2026.3.7-agent-crud
 COPY start-openclaw.sh /usr/local/bin/start-openclaw.sh
 RUN chmod +x /usr/local/bin/start-openclaw.sh
 
