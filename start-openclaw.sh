@@ -167,6 +167,8 @@ if (process.env.OPENCLAW_GATEWAY_TOKEN) {
 if (process.env.OPENCLAW_DEV_MODE === 'true') {
     config.gateway.controlUi = config.gateway.controlUi || {};
     config.gateway.controlUi.allowInsecureAuth = true;
+    // Required since openclaw 2026.3.x for non-loopback Control UI
+    config.gateway.controlUi.dangerouslyAllowHostHeaderOriginFallback = true;
 }
 
 // Legacy AI Gateway base URL override:
