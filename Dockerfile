@@ -21,8 +21,8 @@ RUN ARCH="$(dpkg --print-architecture)" \
 RUN npm install -g pnpm
 
 # Install OpenClaw (formerly clawdbot/moltbot)
-# Pin to specific version for reproducible builds
-RUN npm install -g openclaw@2026.3.7 \
+# Use @latest to stay current with upstream fixes
+RUN npm install -g openclaw@latest \
     && openclaw --version
 
 # Create OpenClaw directories
