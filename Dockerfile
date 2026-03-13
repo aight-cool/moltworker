@@ -21,7 +21,9 @@ RUN ARCH="$(dpkg --print-architecture)" \
 RUN npm install -g pnpm
 
 # Install OpenClaw (formerly clawdbot/moltbot)
-# Use @latest to stay current with upstream fixes
+# .cache-bust is written by deploy-gateway.sh with a timestamp before each deploy,
+# so COPY invalidates the Docker layer cache and npm always fetches the latest version.
+COPY .cache-bust /tmp/.cache-bust
 RUN npm install -g openclaw@latest \
     && openclaw --version
 

@@ -312,13 +312,6 @@ if r2_configured; then
 fi
 
 # ============================================================
-# UPDATE OPENCLAW TO LATEST
-# ============================================================
-echo "Updating openclaw to latest..."
-npm install -g openclaw@latest 2>&1 | tail -1
-echo "openclaw $(openclaw --version)"
-
-# ============================================================
 # START GATEWAY
 # ============================================================
 echo "Starting OpenClaw Gateway..."

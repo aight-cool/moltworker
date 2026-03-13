@@ -37,6 +37,9 @@ Thumbs.db
 # Docker build artifacts
 *.tar
 
+# Cache-bust marker (written by deploy-gateway.sh before each deploy)
+.cache-bust
+
 # Veta agent memory
 .veta/
 
